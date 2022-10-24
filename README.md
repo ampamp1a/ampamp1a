@@ -1,4 +1,5 @@
 ### Hi there 👋
+You can call me Ampere ✨
 
 <!--
 **ampamp1a/ampamp1a** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
