@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C/ywNeHr0qTw3TB1wcsG9dJQZpmiDQZGMaf/PL+WU0yLftaONnK2RjEvh2Gv//WgOlFbUdk/sNpgFJFu9cdfDw==",
+  "dgSpecHash": "2/l3wTjKOyfsTdszDONW486vk3h5ZNpAZWt4rq+fKE3kOeduP2MFi8hPXr+7vWKsJNjV8H2yAnxKa3Ns+gRJJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\TicTacToe3\\TicTacToe3\\TicTacToe3.csproj",
+  "projectFilePath": "D:\\all\\ampamp1a\\TicTacToe3\\TicTacToe3\\TicTacToe3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\nakov.turtlegraphics\\2.0.2.1\\nakov.turtlegraphics.2.0.2.1.nupkg.sha512"
   ],

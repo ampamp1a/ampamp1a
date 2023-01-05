@@ -73,10 +73,9 @@ namespace TicTacToe
 
         private void SwitchPlayer()
         {
-            //CurrentPlayer = CurrentPlayer == Player.X ? Player.O : (Player.S ? Player.X : Player.S);
             //CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
             if (CurrentPlayer == Player.X) { CurrentPlayer = Player.O; }
-             else if (CurrentPlayer == Player.O) { CurrentPlayer = Player.S; }
+            else if (CurrentPlayer == Player.O) { CurrentPlayer = Player.S; }
             else if (CurrentPlayer == Player.S) { CurrentPlayer = Player.X; }//
         }
 
