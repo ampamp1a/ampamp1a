@@ -129,13 +129,7 @@ namespace TicTacToe
                 BitmapImage oImg = new BitmapImage(oUri);
                 DiscreteObjectKeyFrame oKeyFrame = new DiscreteObjectKeyFrame(oImg);
                 animations[Player.O].KeyFrames.Add(oKeyFrame);
-                if (i < 8)
-                {
-                    Uri sUri = new Uri($"pack://application:,,,/Asset/X{i}.png");
-                    BitmapImage sImg = new BitmapImage(xUri);
-                    DiscreteObjectKeyFrame sKeyFrame = new DiscreteObjectKeyFrame(xImg);
-                    animations[Player.S].KeyFrames.Add(xKeyFrame);
-                } //
+
             }
         }
 
@@ -251,16 +245,7 @@ namespace TicTacToe
             line.BeginAnimation(Line.X2Property, x2Animation);
             line.BeginAnimation(Line.Y2Property, y2Animation);
 
-            // Delay
-
-            await Task.Delay(250);
-
-            Line line2 = new Line();
-
-            Grounds[r, c].Children.Add(line2);
-
-            line2.StrokeThickness = 4;
-            line2.Stroke = Brushes.Black;
+         
         }//
         private async void Draw_X (int r , int c)
         {
