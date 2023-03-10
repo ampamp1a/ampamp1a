@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r045=s1w%xr3i%8nxhqnxb11!!g68yuqx-c!b2m4j^sayj$87s'
+#SECRET_KEY = 'django-insecure-r045=s1w%xr3i%8nxhqnxb11!!g68yuqx-c!b2m4j^sayj$87s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,13 +82,14 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'equipment_borrow',
-        'USER': 'root',
-        'PASSWORD': 'amp_962546*kmutnb',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
+        'HOST': env('DATABASE_HOST'),   # Or an IP Address that your DB is hosted on
+        'PORT': 3306,
     }
 }
+SECRET_KEY = env('SECRET_KEY')
 
 
 # Password validation
@@ -127,3 +132,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

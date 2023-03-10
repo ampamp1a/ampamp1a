@@ -58,7 +58,7 @@ class User(models.Model):
     u_updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "%s %s %s" % (self.u_name,self.faculty,self.department)
+        return "%s %s %s" % (self.u_name,self.u_faculty,self.u_department)
 class Item(models.Model):
     item_id = models.AutoField(primary_key =True)
     item_id_type = models.ForeignKey(Id_type, on_delete = models.DO_NOTHING)
@@ -92,5 +92,4 @@ class Borrow_info(models.Model):
     b_updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.b_user
-
 
