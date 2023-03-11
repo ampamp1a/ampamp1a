@@ -11,8 +11,8 @@ class ItemsSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('item_id','item_id_type','item_name','item_category',
                   'item_description','item_faculty','item_department',
-                  'item_status','item_created_at','item_updated_at')
-        
+                  'item_status')
+                #   ,'item_created_at','item_updated_at')
 class UserPrivilegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_privilege
@@ -22,6 +22,12 @@ class UserPrivilegeSerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
+        fields = '__all__'
+
+
+class FacultieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Facultie
         fields = '__all__'
 
 
@@ -47,21 +53,20 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-        #
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
 
-    '''def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
-        if password is not None:
-            instance.set_password(password)
-        instance.save()
-        return instance'''
-    #
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
 
 class BorrowInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrow_info
         fields = '__all__'
+
+class Borrow_statuseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Borrow_statuse
+        fields = ('b_status_id', 'b_status_name')

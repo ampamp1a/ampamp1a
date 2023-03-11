@@ -47,18 +47,19 @@ class Item_statuse(models.Model):
 
 class User(models.Model):
     u_id = models.AutoField(primary_key=True)
-    u_name = models.CharField(max_length=100,unique = True)
+    u_name = models.CharField(max_length=100, unique=True)
     u_password = models.CharField(max_length=100)
-    u_email = models.EmailField(max_length=100)
+    u_email = models.EmailField(max_length=100,unique=True )
     u_tel = models.IntegerField()
-    u_faculty = models.ForeignKey(Facultie,on_delete=models.DO_NOTHING)
-    u_department = models.ForeignKey(Department, on_delete=models.DO_NOTHING)
-    u_privilege = models.ForeignKey(User_privilege, on_delete=models.DO_NOTHING)
+    u_faculty = models.ForeignKey(Facultie, on_delete=models.DO_NOTHING, related_name='users')
+    u_department = models.ForeignKey(Department, on_delete=models.DO_NOTHING, related_name='users')
+    u_privilege = models.ForeignKey(User_privilege, on_delete=models.DO_NOTHING, related_name='users')
     u_created_at = models.DateTimeField(auto_now_add=True)
     u_updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "%s %s %s" % (self.u_name,self.u_faculty,self.u_department)
+    
 class Item(models.Model):
     item_id = models.AutoField(primary_key =True)
     item_id_type = models.ForeignKey(Id_type, on_delete = models.DO_NOTHING)
