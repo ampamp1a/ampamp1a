@@ -47,54 +47,30 @@ def all_items(request):
 
 
 
-'''@api_view(['POST'])
-def login(request):
-    if request.method == 'POST':
-        email = request.data.get('u_email')
-        password = request.data.get('u_password')
-
-        # Authenticate user
-        user = authenticate(request, username=email, password=password)
-
-        print(email)
-        print(password)
-        print(user)
-        if user is not None:
-            # Create access and refresh token
-            access_token = create_access_token(user)
-            refresh_token = create_refresh_token(user)
-
-            # Set refresh token in cookie
-            response = Response(status=status.HTTP_200_OK)
-            set_refresh_token(response, refresh_token)
-
-            return response
-        else:
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)'''
-
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated, CanViewItems])
+#@permission_classes([IsAuthenticated, CanViewItems])
 def items(request):
     # TODO: Implement logic to fetch and return equipments for student users
-    response_data = {'message': 'List of items for student users'}
-    return JsonResponse(response_data)
+    allitems = Item.objects.all()
+    serializer = ItemsSerializer(allitems,many = True)
+    return Response(serializer.data,status = status.HTTP_200_OK)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated, CanViewItemDetails])
+#@permission_classes([IsAuthenticated, CanViewItemDetails])
 def item_details(request, item_id):
     try:
         item = Item.objects.get(item_id=item_id)
         data = {
             'item_id': item.item_id,
             'item_name': item.item_name,
-            'item_category': item.item_category.category_name,
+            'item_category': item.item_category,
             'item_description': item.item_description,
-            'item_faculty': item.item_faculty.faculty_name,
-            'item_department': item.item_department.department_name,
-            'item_status': item.item_status.status_name,
-            'item_borrow_status': item.item_borrow_status.status_name,
+            'item_faculty': item.item_faculty,
+            'item_department': item.item_department,
+            'item_status': item.item_status,
+            'item_borrow_status': item.item_borrow_status,
             'item_note': item.item_note,
             'item_img_url': item.item_img_id.url,
             'item_created_at': item.item_created_at,
@@ -105,14 +81,14 @@ def item_details(request, item_id):
         return JsonResponse({'error': 'Item does not exist'})
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated, CanViewItemDetails])
+#@permission_classes([IsAuthenticated, CanViewItemDetails])
 def contact(request, equipment_id):
     # TODO: Implement logic to fetch and return contact info for equipment_id for student users
     response_data = {'message': f'Contact info for equipment {equipment_id} for student users'}
     return JsonResponse(response_data)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated, IsStudent])
+#@permission_classes([IsAuthenticated, IsStudent])
 def borrowed_equipment(request):
     # TODO: Implement logic to fetch and return borrowed equipment for student users
     response_data = {'message': 'List of borrowed equipments for student users'}
