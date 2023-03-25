@@ -1,0 +1,96 @@
+{% extends "layouts/base_select_subject.html" %}
+
+{% block title %} Schedule of {{request.user.username}} {% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% load custom_tags %}
+
+<style>
+    * {
+        font-family: FC Paragraph;
+    }
+
+    body {
+        margin: 0;
+        font-family: FC Paragraph;
+        font-size: 17px;
+        color: #000000;
+        background-color: #FEE8D8ff;
+    }
+</style>
+
+<div class="box">
+    <div class="container">
+
+        <section id="section-a">
+            <h1> </h1>
+
+            <h1> ค้นหาวิชา </h1>
+            <section id="section-d">
+                <form class="search-field">
+                    <section id="section-c">
+                        <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
+                        <button class="search_btn" type="submit">Search</button>
+                    </section>
+                </form>
+            </section>
+            
+            
+
+            {%for sub in sub_name %}
+            <section id="section-a">
+            {%if users|count_user:sub.id != 0 %}
+                <div class="subject-card">
+                    <h5>คนที่ลงวิชา {{sub.name}} </h5>&nbsp;
+                    <p class="subject-text"></p>
+                </div>
+
+                <div class="subject-card">
+                    {% for user in users %}
+                        {% if user.sub_id.id == sub.id %}
+
+                        <h5>{{user.user_id.username}}</h5>&nbsp;
+                        <p class="subject-text"></p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            </section>
+
+            {% endfor %}
+
+        </section>
+
+        <!-- go on top button -->
+        <button id="go-top-button" onclick="goToTop()"></button>
+
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("go-top-button").style.display = "block";
+                } else {
+                    document.getElementById("go-top-button").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function goToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

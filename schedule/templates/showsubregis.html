@@ -1,0 +1,86 @@
+{% extends "layouts/base_select_subject.html" %}
+
+{% block title %} Schedule of {{request.user.username}} {% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% load custom_tags %}
+
+<style>
+    * {
+        font-family: FC Paragraph;
+    }
+
+    body {
+        margin: 0;
+        font-family: FC Paragraph;
+        font-size: 17px;
+        color: #000000;
+        background-color: #FEE8D8ff;
+    }
+</style>
+
+<div class="box">
+    <div class="container">
+
+
+        <!-- วิชาที่สามารถลงได้ในเทอมนี้ -->
+        <section id="section-a">
+            <h1> </h1>
+
+            <h1> วิชาที่มีคนลงทะเบียน และจำนวนคนลงทะเบียน </h1>
+
+            {%for sub in sub_objects %}
+            {%if users|count_user:sub.id != 0 %}
+
+            <section id="section-a">
+                <div class="subject-card">
+
+                    <section id="section-e">
+                        <div class="box-1">
+                            <p class="subject-head">วิขา {{sub.name}}</p>
+                        </div>
+                        <div class="box-2">
+                            <p class="subject-head">{{users|count_user:sub.id}} คน</p>
+                        </div>
+                    </section>
+
+
+                </div>
+            </section>
+            {% endif %}
+            {% endfor %}
+
+        </section>
+
+        <!-- go on top button -->
+        <button id="go-top-button" onclick="goToTop()"></button>
+
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("go-top-button").style.display = "block";
+                } else {
+                    document.getElementById("go-top-button").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function goToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
