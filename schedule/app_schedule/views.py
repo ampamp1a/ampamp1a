@@ -41,7 +41,7 @@ def schedule_view(request):
 def about(request):
     return render(request, 'about.html')
 
-#1
+#1 searchandshow
 def Show_sub(request):
     # search btn
     if 'q' in request.GET:
@@ -50,14 +50,14 @@ def Show_sub(request):
         sub_name = Subjects_info.objects.filter(multiple_search)
     else:
         sub_name = Subjects_info.objects.none()
+        
     users = User_subjects.objects.all()    
-
     context = {'sub_name':sub_name,
                 'users':users,
 }        
     return render(request,'showsub.html',context)
 
-#2
+#2 showandcount
 def Show_subregis(request):
     sub_objects = Subjects_info.objects.all()
     users = User_subjects.objects.all()

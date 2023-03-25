@@ -24,7 +24,9 @@
       <nav class="nav-box">
         <div class="nav-left"><nav-label>Hello, {{request.user.username}}</nav-label></div>
         <div class="nav-right">
+          <!-- 1 -->
           <a class="nav-submit" href="{% url 'Showsub' %}" role="button">Showsub</a>
+          <!-- 2 -->
           <a class="nav-submit" href="{% url 'Showsubregis' %}" role="button">Showsubregis</a>
           
           <a class="nav-submit" href="{% url 'selects_subject' %}" role="button">Select subject</a>
